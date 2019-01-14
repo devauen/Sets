@@ -3,13 +3,15 @@ package com.proartz;
 import java.util.HashSet;
 import java.util.Set;
 
-public final class HeavenlyBody {
-    private final String name;
-    private final double orbitalPeriod;
-    private final Set<HeavenlyBody> satellites;
+public abstract class HeavenlyBody {
+    private String name;
+    private String bodyType;
+    private double orbitalPeriod;
+    private Set<HeavenlyBody> satellites;
 
-    public HeavenlyBody(String name, double orbitalPeriod) {
+    public HeavenlyBody(String name, String bodyType, double orbitalPeriod) {
         this.name = name;
+        this.bodyType = bodyType;
         this.orbitalPeriod = orbitalPeriod;
         this.satellites = new HashSet<>();
     }
@@ -23,7 +25,11 @@ public final class HeavenlyBody {
         return orbitalPeriod;
     }
 
-    public boolean addMoon(HeavenlyBody moon) {
+    public String getBodyType() {
+        return bodyType;
+    }
+
+    public boolean addSatelite(HeavenlyBody moon) {
         return this.satellites.add(moon);
     }
 
@@ -43,12 +49,28 @@ public final class HeavenlyBody {
         }
 
         String objName = ((HeavenlyBody) obj).getName();
+        double objOrbital = ((HeavenlyBody) obj).getOrbitalPeriod();
+
+        if(this.getOrbitalPeriod() != objOrbital) {
+            return false;
+        }
+
         return this.name.equals(objName);
     }
 
     @Override
     public int hashCode() {
-        System.out.println("hashcode called");
+//        System.out.println("hashcode called");
         return this.name.hashCode() + 57;
+    }
+
+    @Override
+    public String toString() {
+        return "HeavenlyBody{" +
+                "name='" + name + '\'' +
+                ", bodyType='" + bodyType + '\'' +
+                ", orbitalPeriod=" + orbitalPeriod +
+                ", satellites=" + satellites +
+                '}';
     }
 }
