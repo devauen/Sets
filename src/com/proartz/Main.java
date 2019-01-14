@@ -1,6 +1,5 @@
 package com.proartz;
 
-import javax.print.attribute.HashPrintServiceAttributeSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -83,13 +82,13 @@ public class Main {
 
         HeavenlyBody body = solarSystem.get("Mars");
         System.out.println("Moons of " + body.getName());
-        for(HeavenlyBody jupiterMoon: body.getSatelites()) {
+        for(HeavenlyBody jupiterMoon: body.getSatellites()) {
             System.out.println("\t" + jupiterMoon.getName());
         }
 
         Set<HeavenlyBody> moons = new HashSet<>();
         for(HeavenlyBody planet : planets) {
-            moons.addAll(planet.getSatelites());
+            moons.addAll(planet.getSatellites());
         }
 
         System.out.println("All Moons");
@@ -105,6 +104,6 @@ public class Main {
 
         Object o = new Object();
         o.equals(o);
-        "pluto".equals("")
+        "pluto".equals("");
     }
 }

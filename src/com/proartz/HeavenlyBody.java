@@ -6,12 +6,12 @@ import java.util.Set;
 public final class HeavenlyBody {
     private final String name;
     private final double orbitalPeriod;
-    private final Set<HeavenlyBody> satelites;
+    private final Set<HeavenlyBody> satellites;
 
     public HeavenlyBody(String name, double orbitalPeriod) {
         this.name = name;
         this.orbitalPeriod = orbitalPeriod;
-        this.satelites = new HashSet<>();
+        this.satellites = new HashSet<>();
     }
 
 
@@ -24,11 +24,11 @@ public final class HeavenlyBody {
     }
 
     public boolean addMoon(HeavenlyBody moon) {
-        return this.satelites.add(moon);
+        return this.satellites.add(moon);
     }
 
-    public Set<HeavenlyBody> getSatelites() {
-        return new HashSet<>(this.satelites);
+    public Set<HeavenlyBody> getSatellites() {
+        return new HashSet<>(this.satellites);
     }
 
     @Override
@@ -44,6 +44,11 @@ public final class HeavenlyBody {
 
         String objName = ((HeavenlyBody) obj).getName();
         return this.name.equals(objName);
+    }
 
+    @Override
+    public int hashCode() {
+        System.out.println("hashcode called");
+        return this.name.hashCode() + 57;
     }
 }
